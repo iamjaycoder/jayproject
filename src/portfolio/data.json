@@ -1,0 +1,19 @@
+[
+{
+    "id": "1",
+    "title": "Branding",
+    "desc": "At Megas Chara Enterprise, we help you promote your product or company by means of advertising, distinctive design and other tested and trusted branding strategies. Creating a strong perception of your company, and it's products in your customer's mind.",
+    
+    "img": "Image/brand.jpg"
+},
+
+{
+  
+    "id": "2",
+    "title": "Communications",
+    "desc": "At Megas Chara Enterprise, we help you develop and nurture relationships between an organization, members of the the media and the public. Managing all internal and external communication of your company, and represent your company to the outside world.",
+    "img": "Image/comm.jpg"  
+}
+
+
+]
