@@ -54,7 +54,7 @@ border-radius: 5px;
 `;
 const Text = styled.div`
 font-family: Segoe UI;
-font-size: 16px;
+font-size: 14px;
 
 @media screen and (max-width: 480px){
     

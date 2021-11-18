@@ -44,7 +44,7 @@ background-color: #019178;
 `;
 const Title = styled.div`
 font-weight: bold;
-font-size: 22px;
+font-size: 20px;
 color: white;
 margin-bottom: 20px;
 font-family: Segoe UI;
@@ -54,7 +54,6 @@ font-family: Segoe UI;
 }
 `;
 const Holder = styled.div`
-//width: 100%;
 background-color: white;
 border-radius: 40px;
 height: 50px;
@@ -74,7 +73,7 @@ flex: 1;
 border-radius:40px;
 padding-left: 10px;
 color: black;
-font-size: 18px;
+font-size: 16px;
 font-family: Segoe UI;
 
 @media screen and (max-width: 480px){
@@ -86,7 +85,7 @@ border: 0;
 outline: none;
 background-color: transparent;
 color: #0075af;
-font-size: 18px;
+font-size: 16px;
 padding-right: 10px;
 cursor: pointer;
 font-weight: bold;

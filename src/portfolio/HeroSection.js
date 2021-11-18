@@ -100,19 +100,19 @@ width: 90%;
 `;
 const Title = styled.div`
 font-weight: bold;
-font-size: 28px;
+font-size: 26px;
 text-align: center;
 margin-bottom: 10px;
 font-family: Segoe UI;
 
 @media screen and (max-width: 480px){
-    font-size: 26px;
+    font-size: 24px;
 }
 
 `;
 const Desc = styled.div`
 margin-bottom: 20px;
-font-size: 18px;
+font-size: 16px;
 font-family: Segoe UI;
 text-align: center;
 

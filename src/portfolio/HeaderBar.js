@@ -5,30 +5,38 @@ import HomeIcon from "@mui/icons-material/Home";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import {animateScroll as Scroll, Link,} from "react-scroll";
-import MenuIcon from "@mui/icons-material/Menu";
-import SideBar from "./SideBar";
+import {FaBars, FaTimes} from 'react-icons/fa'
 
-const HeaderBar = ({ bg, cl }) => {
+
+const HeaderBar = ({ bg }) => {
 
     const [toggle, setToggle] = useState(false);
 
   const onHandle = () => {
     setToggle(!toggle);
   };
+  const offHandle = () => {
+    setToggle(false);
+  }
  
   return (
         
       <Container bg={bg}>
         <Wrapper>
+          
           <Logo
             src={logo}
             onClick={() => {
               Scroll.scrollToTop();
             }}
           />
+          <MobileMenu onClick={onHandle}>
+              {toggle ? <FaTimes/> : <FaBars/>}
+          </MobileMenu>
           
-          <Navigation>
+          <Navigation toggle={toggle} onClick={offHandle}>
             <Nav
+            onClick={offHandle}
               to='home'
               smooth={true}
               offset={-100}
@@ -37,20 +45,22 @@ const HeaderBar = ({ bg, cl }) => {
               <span>Home</span>
             </Nav>
             <Nav
-              to='contact'
-              smooth={true}
-              offset={-100}
-              duration={500}>
-              <ContactsIcon />
-              <span>Contact</span>
-            </Nav>
-            <Nav
+            onClick={offHandle}
               to='service'
               smooth={true}
               offset={-100}
               duration={500}>
               <HomeRepairServiceIcon />
               <span>Services</span>
+            </Nav>
+            <Nav
+            onClick={offHandle}
+              to='contact'
+              smooth={true}
+              offset={-100}
+              duration={500}>
+              <ContactsIcon />
+              <span>Contact</span>
             </Nav>
           </Navigation>
          
@@ -60,15 +70,7 @@ const HeaderBar = ({ bg, cl }) => {
             }}>
             Goto Last
           </Button>
-          <Menu
-            onClick={() => {
-              onHandle();
-              console.log(toggle);
-            }}>
-            <MenuIcon />
-          </Menu>
         </Wrapper>
-        {toggle ? <SideBar toggle= {toggle} setToggle={setToggle}/> : null};
       </Container>
      
   );
@@ -76,18 +78,19 @@ const HeaderBar = ({ bg, cl }) => {
 
 export default HeaderBar;
 
-const Menu = styled.div`
+const MobileMenu = styled.div`
 display: none;
 
 @media screen and (max-width: 480px){
-    width: 100%;
     display: flex;
-    justify-content: flex-end;
-    transition: all 350ms;
-    margin-right: 1.5%;
-    margin-bottom: 10px;
-    cursor: pointer;
-  
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right:20px;
+    font-size: 30px;
+    //colour: ${({ cl }) => cl ?  "#fff" :  "#0075af"};
+    background: #0075af;
+
 }
 `;
 
@@ -101,20 +104,24 @@ const Container = styled.div`
   background: rgba( 255, 255, 255, 0.25 );
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 4px );
--webkit-backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );cd
 // border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 background: ${({ bg }) => bg ?  "transparent" :  "#0075af"}
+
+
 `;
 const Wrapper = styled.div`
   width: 100%;
-  height: 80px;
+  height: 100%;
   display: flex;
   align-items: center;
 
+  
    @media screen and (max-width: 768px) {
     flex-direction: column;
-    
+    //justify-content: center;
+    //background: red
   }
 `;
 const Logo = styled.img`
@@ -125,24 +132,34 @@ const Logo = styled.img`
   cursor: pointer;
 
   @media screen and (max-width: 480px){
-      //height: 160px;
-      //width: 20%;
+    width: 18%;
   }
 
 
-
-  
 `;
 const Navigation = styled.div`
   display: flex;
   flex: 1;
 
-//   @media screen and (max-width: 768px) {
-//       flex-direction: column;
-       
-       width: 100%;
-       margin-top: 5px;
-//   }
+  @media screen and (max-width: 768px) {
+    //background: red;
+    width: 100%;
+    //margin-top: 130px;
+  }
+
+  @media screen and (max-width: 480px){
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    background: #019178;
+    left: ${({toggle}) => (toggle ? "0" : "-100%")};
+    width: 100%;
+    height: 90vh;
+    transition: all 350ms ease-in-out;
+}
+
 `;
 const Nav = styled(Link)`
   margin: 0 1.5%;
@@ -151,14 +168,13 @@ const Nav = styled(Link)`
   color: white;
 
   @media screen and (max-width: 768px){
-    margin: 10px auto;
+     margin:  auto;
     color: #0075af;
-
-    @media screen and (max-width: 480px){
-       
-        display: none;
-    }
-
+}
+@media screen and (max-width: 480px){
+  color: #fff;
+  font-size: 20px;
+  margin: 30px auto;
 }
 
   .MuiSvgIcon-root {
@@ -166,12 +182,14 @@ const Nav = styled(Link)`
     margin-right: 3%;
     color: rgba(255, 255, 255, 0.7);
     transition: all 350ms;
-    
+
     @media screen and (max-width: 768px){
         color: #0075af;
         font-size: 30px;
     }
-
+    @media screen and (max-width: 480px){
+       color: #fff;
+    }
   }
 
   :after {
@@ -193,14 +211,32 @@ const Nav = styled(Link)`
   :hover {
     cursor: pointer;
 
+    @media screen and (max-width: 768px){
+    
+     color: #019178;
+ }
+    @media screen and (max-width: 480px){
+    
+     color: #fff;
+ }
+
     .MuiSvgIcon-root {
       color: rgba(255, 255, 255, 1);
+
+      @media screen and (max-width: 768px){
+       color: #019178;
+   }
+   @media screen and (max-width: 480px){
+    
+    color: #fff;
+}
     }
 
     span {
       :after {
         opacity: 1;
         transform: scale(1);
+        
         
       }
     }
@@ -221,6 +257,16 @@ const Button = styled.button`
    transition: all 350ms;
    font-weight: bold;
    font-family: Segoe UI;
+
+   
+@media screen and (max-width: 768px){
+
+  position: absolute;
+  //left: 42%;
+  //bottom: 100px;
+  background: red;
+  display: none;
+  }
  
 
   :hover {
@@ -233,14 +279,8 @@ const Button = styled.button`
 
 
 
-@media screen and (max-width: 768px){
-
-position: relative;
-left: 42%;
-bottom: 100px;
-}
-
 @media screen and (max-width: 480px){
-    display: none;
+  display: none;
 }
+
 `;

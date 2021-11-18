@@ -85,7 +85,7 @@ const Content = styled.div`
 const Title = styled.div`
   margin-bottom: 0.75%;
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   font-family: Segoe UI;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ const Desc = styled.div`
   margin: 0.75%;
   text-align: center;
   font-family: Segoe UI;
-  font-size: 18px;
+  font-size: 16px;
 
   @media screen and (max-width: 480px){
     font-size: 16px;
